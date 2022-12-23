@@ -1,6 +1,6 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-const returnWhatIPassIn = (t: unknown) => {
+const returnWhatIPassIn = <K>(t: K) => {
   return t;
 };
 
