@@ -1,7 +1,12 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-const returnBothOfWhatIPassIn = (params: { a: unknown; b: unknown }) => {
+type Params<P1, P2> = {
+  a: P1,
+  b: P2
+}
+
+const returnBothOfWhatIPassIn = <P1, P2>(params: Params<P1, P2>) => {
   return {
     first: params.a,
     second: params.b,
