@@ -19,9 +19,12 @@ const appConfig = {
   },
 };
 
+type Config = typeof appConfig
+type Flags = typeof appConfig.rawConfig.featureFlags.homePage
+
 export const getFeatureFlags = (
-  config: unknown,
-  override: (flags: unknown) => unknown,
+  config: Config,
+  override: (flags: Flags) => Flags,
 ) => {
   return override(config.rawConfig.featureFlags.homePage);
 };
