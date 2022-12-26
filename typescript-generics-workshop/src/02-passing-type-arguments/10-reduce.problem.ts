@@ -10,7 +10,9 @@ const array = [
   },
 ];
 
-const obj = array.reduce((accum, item) => {
+type OBJReduce = Record<string, {name: string}>
+
+const obj = array.reduce<OBJReduce>((accum, item) => {
   accum[item.name] = item;
   return accum;
 }, {});
