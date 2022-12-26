@@ -10,7 +10,10 @@ const array = [
   },
 ];
 
-type OBJReduce = Record<string, {name: string}>
+// type Record<T extends string | number | symbol, K> = { [P in T]: K}
+type OBJRecord<T extends string | number | symbol, K> = { [P in T]: K}
+
+type OBJReduce = OBJRecord<string, {name: string}>
 
 const obj = array.reduce<OBJReduce>((accum, item) => {
   accum[item.name] = item;
