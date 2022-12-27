@@ -1,3 +1,4 @@
+import { T } from "ts-toolbelt";
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
@@ -6,8 +7,14 @@ import { Equal, Expect } from "../helpers/type-utils";
  * to do with the way you specify the generic. Can you get
  * both solutions?
  */
-const typedObjectKeys = (obj: unknown) => {
-  return Object.keys(obj);
+// EXTENDS
+// const typedObjectKeys = <T extends object>(obj: T ) => {
+//   return Object.keys(obj) as Array<keyof T>;
+// };
+
+// Record
+const typedObjectKeys = <T  extends object>(obj: Record<keyof T, unknown> ) => {
+  return Object.keys(obj) as Array<keyof T>;
 };
 
 it("Should return the keys of the object", () => {
