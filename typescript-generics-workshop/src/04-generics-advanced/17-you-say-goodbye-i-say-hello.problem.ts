@@ -1,8 +1,13 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-function youSayGoodbyeISayHello(greeting: unknown) {
-  return greeting === "goodbye" ? "hello" : "goodbye";
+type Hello = 'hello'
+type Goodbye = 'goodbye'
+
+function youSayGoodbyeISayHello<Greeting extends Hello | Goodbye>(
+  greeting: Greeting
+): Greeting extends Hello ? Goodbye : Hello {
+  return (greeting === "goodbye" ? "hello" : "goodbye") as any;
 }
 
 it("Should return goodbye when hello is passed in", () => {
