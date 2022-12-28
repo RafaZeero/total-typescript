@@ -2,8 +2,8 @@ import { T } from "ts-toolbelt";
 import { expect, it } from "vitest";
 
 const createClassNamesFactory =
-  <T extends string>(classes: Record<T, string>) =>
-  (type: T, ...otherClasses: string[]) => {
+  <T extends Record<string, string>>(classes: T) =>
+  (type: keyof T, ...otherClasses: string[]): string => {
     const classList = [classes[type], ...otherClasses];
     return classList.join(" ");
   };
