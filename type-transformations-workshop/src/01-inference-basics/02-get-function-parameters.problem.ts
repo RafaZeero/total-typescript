@@ -1,17 +1,18 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils'
 
 const makeQuery = (
   url: string,
   opts?: {
-    method?: string;
+    method?: string
     headers?: {
-      [key: string]: string;
-    };
-    body?: string;
+      [key: string]: string
+    }
+    body?: string
   },
-) => {};
+) => {}
 
-type MakeQueryParameters = unknown;
+type MyParams<TParams extends (...args: any) => any> = TParams extends (...args: infer R) => any ? R : never
+type MakeQueryParameters = MyParams<typeof makeQuery>
 
 type tests = [
   Expect<
@@ -20,13 +21,13 @@ type tests = [
       [
         url: string,
         opts?: {
-          method?: string;
+          method?: string
           headers?: {
-            [key: string]: string;
-          };
-          body?: string;
+            [key: string]: string
+          }
+          body?: string
         },
       ]
     >
   >,
-];
+]
