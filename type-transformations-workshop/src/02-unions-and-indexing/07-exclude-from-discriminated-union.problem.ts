@@ -14,7 +14,7 @@ export type Event =
       event: KeyboardEvent
     }
 
-type NonKeyDownEvents = MyExclude<Event, { type: 'click' } | { type: 'focus' }>
+type NonKeyDownEvents = MyExclude<Event, { type: 'keydown'; event: KeyboardEvent }>
 type MyExclude<T, P> = T extends P ? never : T
 
 type tests = [
