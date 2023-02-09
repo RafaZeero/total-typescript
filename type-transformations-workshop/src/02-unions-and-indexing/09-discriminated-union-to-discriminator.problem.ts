@@ -14,8 +14,6 @@ export type Event =
       event: KeyboardEvent
     }
 
-type EventType = {
-  [K in Event['type']]: K
-}[Event['type']]
+type EventType = Event['type']
 
 type tests = [Expect<Equal<EventType, 'click' | 'focus' | 'keydown'>>]
