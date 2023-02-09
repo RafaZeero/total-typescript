@@ -1,19 +1,21 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils'
 
 export type Event =
   | {
-      type: "click";
-      event: MouseEvent;
+      type: 'click'
+      event: MouseEvent
     }
   | {
-      type: "focus";
-      event: FocusEvent;
+      type: 'focus'
+      event: FocusEvent
     }
   | {
-      type: "keydown";
-      event: KeyboardEvent;
-    };
+      type: 'keydown'
+      event: KeyboardEvent
+    }
 
-type EventType = unknown;
+type EventType = {
+  [K in Event['type']]: K
+}[Event['type']]
 
-type tests = [Expect<Equal<EventType, "click" | "focus" | "keydown">>];
+type tests = [Expect<Equal<EventType, 'click' | 'focus' | 'keydown'>>]
