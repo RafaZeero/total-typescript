@@ -11,7 +11,9 @@ const makeQuery = (
   },
 ) => {}
 
-type MyParams<TParams extends (...args: any) => any> = TParams extends (...args: infer R) => any ? R : never
+type MyParams<TParams extends (...args: any) => any> = TParams extends (...args: infer R) => any
+  ? R
+  : never
 type MakeQueryParameters = MyParams<typeof makeQuery>
 
 type tests = [
