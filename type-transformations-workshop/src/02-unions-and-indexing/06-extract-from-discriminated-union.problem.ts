@@ -14,8 +14,7 @@ export type Event =
       event: KeyboardEvent
     }
 
-type ClickEvent = MyExtract<Event, { type: 'click' }>
-
 type MyExtract<T, K> = T extends K ? T : never
+type ClickEvent = MyExtract<Event, { type: 'click' }>
 
 type tests = [Expect<Equal<ClickEvent, { type: 'click'; event: MouseEvent }>>]
