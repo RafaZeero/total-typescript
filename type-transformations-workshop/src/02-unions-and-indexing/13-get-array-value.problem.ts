@@ -2,7 +2,8 @@ import { Equal, Expect } from '../helpers/type-utils';
 
 const fruits = ['apple', 'banana', 'orange'] as const;
 
-type AppleOrBanana = Exclude<typeof fruits[number], 'orange'>;
+// type AppleOrBanana = Exclude<typeof fruits[number], 'orange'>;
+type AppleOrBanana = typeof fruits[0 | 1];
 type Fruit = typeof fruits[number];
 
 type tests = [
