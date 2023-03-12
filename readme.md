@@ -4,7 +4,9 @@
 
 # Cool stuff learned
 
-**Split:**
+- [Type Split String](#Split)
+
+# Split
 
 - Getting a string and separating it with a specific value within it. Similar to Javascript String method `.split()`. It returns an Array\<string\>.
 
