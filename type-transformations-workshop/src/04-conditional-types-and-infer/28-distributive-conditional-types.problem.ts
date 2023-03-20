@@ -2,8 +2,9 @@ import { Equal, Expect } from '../helpers/type-utils';
 
 type Fruit = 'apple' | 'banana' | 'orange';
 
-type GetFruit<T> = T extends 'apple' | 'banana' ? T : never;
+type AppleOrBanana = Fruit extends infer F ? (F extends 'apple' | 'banana' ? F : never) : 'no';
 
-type AppleOrBanana = GetFruit<Fruit>;
+const test: AppleOrBanana = 'apple';
+//     ^?
 
 type tests = [Expect<Equal<AppleOrBanana, 'apple' | 'banana'>>];
