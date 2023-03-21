@@ -61,3 +61,30 @@ With the `data` in the first argument, like fp-ts:
 const pipe = (data: any, ...fns: Array<(...args: any) => any>) =>
   fns.reduce((value, fn) => fn(value), data);
 ```
+
+Usage:
+
+```ts
+const pipe =
+  (...fns: Array<(...args: any) => any>) =>
+  (x: any) =>
+    fns.reduce((v, f) => f(v), x);
+const pipe2 = (data: any, ...fns: Array<(...args: any) => any>) =>
+  fns.reduce((value, fn) => fn(value), data);
+
+const double = (x: number) => x * 2;
+const decrease = (x: number) => --x;
+const divide =
+  (x: number = 2) =>
+  (y: number) =>
+    y / x;
+
+const divideBy2 = divide(2);
+const divideBy4 = divide(4);
+
+const result = pipe(double, decrease, double, double, divideBy2)(3);
+const result2 = pipe2(3, double, decrease, double, double, divideBy2);
+
+console.log(result); // 10
+console.log(result2); // 10
+```
