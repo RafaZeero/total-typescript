@@ -6,6 +6,7 @@
 
 - [Type Split String](#Split)
 - [Pipe Function](#Pipe)
+- [Curry Function](#Curry)
 
 # Split
 
@@ -87,4 +88,27 @@ const result2 = pipe2(3, double, decrease, double, double, divideBy2);
 
 console.log(result); // 10
 console.log(result2); // 10
+```
+
+# Curry Function
+
+- TODO
+
+```ts
+const curry = <T extends (...args: any[]) => any>(fn: T) => {
+  const arity = fn.length;
+
+  const f1 = (...args: any[]) => {
+    if (args.length >= arity) {
+      return fn(...args);
+    } else {
+      return (...moreArgs: Parameters<T>) => {
+        const newArgs = args.concat(moreArgs);
+        return f1(...newArgs);
+      };
+    }
+  };
+
+  return f1;
+};
 ```
