@@ -1,6 +1,11 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
-type DeepPartial<T> = unknown;
+/**
+ * Need to transform into an array to avoid getting the undefined value in the partial key
+ */
+type DeepPartial<T> = T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : { [K in keyof T]?: DeepPartial<T[K]> };
 
 type MyType = {
   a: string;
