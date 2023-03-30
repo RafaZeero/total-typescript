@@ -13,14 +13,7 @@ type Route =
   | { route: '/admin/users' };
 
 type RoutesObject = {
-  [K in Route as K['route']]: K extends {
-    search: {
-      page: string;
-      perPage: string;
-    };
-  }
-    ? K['search']
-    : never;
+  [K in Route as K['route']]: K extends { search: infer S } ? S : never;
 };
 
 type tests = [
