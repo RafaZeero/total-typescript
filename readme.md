@@ -7,6 +7,7 @@
 - [Type Split String](#Split)
 - [Pipe Function](#Pipe)
 - [Curry Function](#Curry)
+- [Object Remapping](#Object-Remapping)
 
 # Split
 
@@ -110,5 +111,60 @@ const curry = <T extends (...args: any[]) => any>(fn: T) => {
   };
 
   return f1;
+};
+```
+
+# Object Remapping
+
+- Make an object with a given key value pair, then when creating the key, you iterate throughout all keys and remap it to have a specific value.
+
+```ts
+type Hero =
+  | {
+      class: 'warrior';
+      skills: {
+        attack: string[];
+        defense: string[];
+      };
+    }
+  | { class: 'wizard'; skills: {} }
+  | {
+      class: 'archer';
+      skills: {
+        ranged: string[];
+        melee: string[];
+      };
+    }
+  | { class: 'thief'; skills: {} };
+
+type HeroObject = {
+  [H in Hero as H['class']]: R['skills'];
+};
+```
+
+The `HeroObject` will be remapped as the following:
+
+```ts
+// warrior
+const warriorHero: HeroObject = {
+  warrior: {
+    attack: [''],
+    defense: ['']
+  }
+};
+
+// wizard
+const wizardHero: HeroObject = {
+  wizard: {
+    /* empty */
+  }
+};
+
+// archer
+const archerHero: HeroObject = {
+  archer: {
+    ranged: [''],
+    melee: ['']
+  }
 };
 ```
