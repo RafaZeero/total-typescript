@@ -1,19 +1,19 @@
-import { expect, it } from "vitest";
-import { Equal, Expect } from "../helpers/type-utils";
+import { expect, it } from 'vitest';
+import { Equal, Expect } from '../helpers/type-utils';
 
 const returnBothOfWhatIPassIn = <T, K>(a: T, b: K) => {
   return {
     a,
-    b,
+    b
   };
 };
 
-it("Should return an object of the arguments you pass", () => {
-  const result = returnBothOfWhatIPassIn("a", 1);
+it('Should return an object of the arguments you pass', () => {
+  const result = returnBothOfWhatIPassIn('a', 1);
 
   expect(result).toEqual({
-    a: "a",
-    b: 1,
+    a: 'a',
+    b: 1
   });
 
   type test1 = Expect<
